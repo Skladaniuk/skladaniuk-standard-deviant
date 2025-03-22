@@ -1,3 +1,5 @@
+import styles from "./UserListTable.module.scss";
+import { memo } from "react";
 import {
   Table,
   TableBody,
@@ -10,12 +12,12 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export const UserTable = ({ users, onDelete }) => {
+export const UserListTable = memo(({ users, onDelete }) => {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={styles.tableContainer}>
       <Table>
         <TableHead>
-          <TableRow>
+          <TableRow className={styles.tableHead}>
             <TableCell>Name</TableCell>
             <TableCell>Email</TableCell>
             <TableCell>Phone</TableCell>
@@ -24,7 +26,7 @@ export const UserTable = ({ users, onDelete }) => {
         </TableHead>
         <TableBody>
           {users.map((user) => (
-            <TableRow key={user.id}>
+            <TableRow key={user.id} className={styles.tableRow}>
               <TableCell>{user.name}</TableCell>
               <TableCell>{user.email}</TableCell>
               <TableCell>{user.phone}</TableCell>
@@ -34,6 +36,7 @@ export const UserTable = ({ users, onDelete }) => {
                   to={`/users/edit/${user.id}`}
                   variant="contained"
                   color="primary"
+                  className={styles.editButton}
                 >
                   Edit
                 </Button>
@@ -41,7 +44,7 @@ export const UserTable = ({ users, onDelete }) => {
                   onClick={() => onDelete(user.id)}
                   variant="contained"
                   color="error"
-                  style={{ marginLeft: 8 }}
+                  className={styles.deleteButton}
                 >
                   Delete
                 </Button>
@@ -52,4 +55,4 @@ export const UserTable = ({ users, onDelete }) => {
       </Table>
     </TableContainer>
   );
-};
+});

@@ -1,36 +1,38 @@
-import { useEffect, useState } from "react";
+import styles from "./UsersPage.module.scss";
+import { useState } from "react";
 import { useUserStore } from "../store/useUserStore";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import { UserTable } from "../components/userTables/userTables";
+import { UserListTable } from "../components/UsersListTable/UsersListTable";
 import { ConfirmationWindow } from "../components/confirmationWindow/confirmationWindow";
+import { useCallback } from "react";
 export const UsersPage = () => {
-  const { users, fetchUsers, deleteUser } = useUserStore();
+  const { users, deleteUser } = useUserStore();
   const [confirmDelete, setConfirmDelete] = useState(null);
 
-  useEffect(() => {
-    fetchUsers();
-  }, [fetchUsers]);
-  console.log("----", users);
+  const onDelete = useCallback((id) => setConfirmDelete(id), []);
+
+  const onConfirm = useCallback(() => {
+    if (confirmDelete !== null) deleteUser(confirmDelete);
+    setConfirmDelete(null);
+  }, [confirmDelete, deleteUser]);
+
   return (
-    <div>
-      <h1>Users</h1>
+    <div className={styles.container}>
+      <h1 style={{ color: "#1976d2" }}>Users</h1>
       <Button
         variant="contained"
         component={Link}
         to="/users/new"
-        style={{ marginBottom: 16 }}
+        className={styles.createButton}
       >
         Create User
       </Button>
-      <UserTable users={users} onDelete={(id) => setConfirmDelete(id)} />
+      <UserListTable users={users} onDelete={onDelete} />
       <ConfirmationWindow
         open={confirmDelete !== null}
         onClose={() => setConfirmDelete(null)}
-        onConfirm={() => {
-          if (confirmDelete !== null) deleteUser(confirmDelete);
-          setConfirmDelete(null);
-        }}
+        onConfirm={onConfirm}
       />
     </div>
   );
