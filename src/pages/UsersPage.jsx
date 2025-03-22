@@ -4,7 +4,7 @@ import { useUserStore } from "../store/useUserStore";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { UserListTable } from "../components/UsersListTable/UsersListTable";
-import { ConfirmationWindow } from "../components/confirmationWindow/confirmationWindow";
+import ConfirmationWindow from "../components/confirmationWindow/confirmationWindow";
 import { useCallback } from "react";
 export const UsersPage = () => {
   const { users, deleteUser } = useUserStore();
