@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { ConfirmationWindow } from "../components/confirmationWindow/confirmationWindow";
+import { ConfirmationWindow } from "../components/ConfirmationWindow/ConfirmationWindow";
 import { vi } from "vitest";
 describe("ConfirmationWindow Component", () => {
   const mockOnConfirm = vi.fn();

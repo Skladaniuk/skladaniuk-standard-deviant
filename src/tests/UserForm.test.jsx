@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { vi } from "vitest";
-import { UserForm } from "../components/userForm/userForm";
+import { UserForm } from "../components/UserForm/UserForm";
 describe("UserForm", () => {
   const mockSubmit = vi.fn();
 
