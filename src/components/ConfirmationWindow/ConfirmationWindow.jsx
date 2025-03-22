@@ -7,7 +7,7 @@ import {
   Button,
 } from "@mui/material";
 
-const ConfirmationWindow = ({ open, onClose, onConfirm }) => {
+export const ConfirmationWindow = ({ open, onClose, onConfirm }) => {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Confirm Deletion</DialogTitle>
@@ -28,5 +28,3 @@ const ConfirmationWindow = ({ open, onClose, onConfirm }) => {
     </Dialog>
   );
 };
-
-export default ConfirmationWindow;
