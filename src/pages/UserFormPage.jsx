@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useUserStore } from "../store/useUserStore";
-import { UserForm } from "../components/userForm/userForm";
+import { UserForm } from "../components/UserForm/UserForm";
 
 export const UserFormPage = () => {
   const { id } = useParams();
